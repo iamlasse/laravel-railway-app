@@ -2,13 +2,14 @@
 
 namespace App\Http\Livewire\Admin;
 
-use App\Imports\SubscriptionsImport;
 use App\Models\Company;
-use App\Rules\ExcelRule;
-use Illuminate\Support\Facades\Response;
 use Livewire\Component;
+use App\Rules\ExcelRule;
+use Maatwebsite\Excel\Excel;
 use Livewire\WithFileUploads;
+use App\Imports\SubscriptionsImport;
 use LivewireUI\Modal\ModalComponent;
+use Illuminate\Support\Facades\Response;
 
 class ImportSubscriptionsModal extends ModalComponent
 {
@@ -37,7 +38,7 @@ class ImportSubscriptionsModal extends ModalComponent
             $this->sheet->storeAs('/', $this->companyId . '_' . $this->operatorId . '_import.xlsx');
             
                 (new SubscriptionsImport($this->companyId, $operatorId))
-                    ->import($this->sheet, 'local', \Maatwebsite\Excel\Excel::XLSX);
+                    ->import($this->sheet, 'local', Excel::XLSX);
                 $this->emitTo('admin.subscriptions-table', 'subscriptionsImported');
                 // $this->emitTo('admin.offer-plan-table', 'updateViews');
                 $this->closeModal();
