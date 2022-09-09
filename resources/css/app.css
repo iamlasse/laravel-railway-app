@@ -1,9 +1,9 @@
-@import "../../vendor/filament/forms/dist/module.esm.css";
+@import "filament.css";
 
-@import "tailwindcss/base";
-@import "tailwindcss/components";
+@tailwind base;
+@tailwind components;
 @import "perfect-scrollbar/css/perfect-scrollbar.css";
-@import "tailwindcss/utilities";
+@tailwind utilities;
 @import "notyf/notyf.min.css";
 .dark .ps__rail-y,
 .dark .ps__rail-x {
