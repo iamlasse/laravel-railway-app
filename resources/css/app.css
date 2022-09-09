@@ -1,10 +1,10 @@
-@import "filament.css";
+@import "../../vendor/filament/forms/dist/module.esm.css";
 
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'perfect-scrollbar/css/perfect-scrollbar.css';
-@import 'tailwindcss/utilities';
-@import 'notyf/notyf.min.css';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "perfect-scrollbar/css/perfect-scrollbar.css";
+@import "tailwindcss/utilities";
+@import "notyf/notyf.min.css";
 .dark .ps__rail-y,
 .dark .ps__rail-x {
     background-color: transparent !important;
