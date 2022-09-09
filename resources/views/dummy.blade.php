@@ -1,0 +1,9 @@
+<div class="bg-green-300"></div>       
+<div class="bg-gray-900"></div>       
+<div class="bg-red-300"></div>       
+<div class="bg-indigo-300"></div>       
+<div class="bg-yellow-300"></div>       
+<div class="bg-green-900"></div>       
+<div class="bg-red-900"></div>       
+<div class="bg-indigo-900"></div>       
+<div class="bg-yellow-900"></div>       

@@ -2,10 +2,18 @@
 
 namespace App\Providers;
 
+use App\Events\Admin\CompanyCreated;
+use App\Events\Admin\CompanyStarted;
+use App\Listeners\Admin\SendCompanyAdminInfo;
+use App\Listeners\Company\SendCompanyInvite;
+use App\Listeners\Company\SetupCompany;
+use App\Listeners\Company\SetTenantId;
+use App\Models\Company;
+use App\Observers\CompanyObserver;
+use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -18,6 +26,16 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        Login::class => [
+            SetTenantId::class,
+            SetupCompany::class,
+        ],
+        CompanyCreated::class => [
+            SendCompanyAdminInfo::class
+        ],
+        CompanyStarted::class => [
+            SendCompanyInvite::class
+        ]
     ];
 
     /**
@@ -27,6 +45,8 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        if (!app()->runningInConsole()) {
+            Company::observe(CompanyObserver::class);
+        }
     }
 }

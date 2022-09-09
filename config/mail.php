@@ -29,7 +29,7 @@ return [
     | mailers below. You are free to add additional mailers as required.
     |
     | Supported: "smtp", "sendmail", "mailgun", "ses",
-    |            "postmark", "log", "array"
+    |            "postmark", "log", "array", "failover"
     |
     */
 
@@ -55,6 +55,8 @@ return [
 
         'postmark' => [
             'transport' => 'postmark',
+            'message_stream_id' => env('POSTMARK_MESSAGE_STREAM_ID', 'outbound'),
+            'local_domain' => env('MAIL_HOST', 'telekomkollen.se'), 
         ],
 
         'sendmail' => [
@@ -69,6 +71,14 @@ return [
 
         'array' => [
             'transport' => 'array',
+        ],
+
+        'failover' => [
+            'transport' => 'failover',
+            'mailers' => [
+                'smtp',
+                'log',
+            ],
         ],
     ],
 
